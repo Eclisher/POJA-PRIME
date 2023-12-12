@@ -34,7 +34,7 @@ jobs:
           export API_URL_SSM="`aws ssm get-parameter --name /poja-prime/${{ github.ref_name }}/api/url`"
           sudo apt-get install jq
           export API_URL=`echo $API_URL_SSM | jq -r '.Parameter.Value'`
-          curl --fail "$API_URL"/dummy-table
+          curl --fail https://amn0evl3zc.execute-api.eu-west-3.amazonaws.com/Prod/dummy-table
 
   check-async-stack:
     timeout-minutes: 300
@@ -55,5 +55,5 @@ jobs:
         run: |
           export API_URL_SSM="`aws ssm get-parameter --name /poja-prime/${{ github.ref_name }}/api/url`"
           sudo apt-get install jq
-          export API_URL=`echo $API_URL_SSM | jq -r '.Parameter.Value'`
-          curl --max-time 60 --fail "$API_URL"/uuid-created
+           
+          curl --max-time 60 --fail https://amn0evl3zc.execute-api.eu-west-3.amazonaws.com/Prod/uuid-created
